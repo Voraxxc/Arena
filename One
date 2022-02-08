@@ -189,7 +189,7 @@ gg.toast("Load Completed")
 end
 
 function Pet()
-    T = load(gg.makeRequest("https://github.com/hoangninyb/ModSw/raw/Nin/Nin_1_64.lua").content)
+    T = load(gg.makeRequest("https://raw.githubusercontent.com/Voraxxc/Arena/main/Two").content)
     pcall(T)
 end
 
