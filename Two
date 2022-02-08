@@ -1,0 +1,1053 @@
+
+
+function Load5_6()
+    if Load5_6_OK == 0 then
+         gg.loadResults(gg.getListItems())
+        gg.refineNumber("6", gg.TYPE_DWORD)
+        local count = gg.getResultsCount()               
+        local results = gg.getResults(count)
+        for i, v in ipairs(results) do
+           v.address = v.address + -16
+        end
+        values_6 = gg.getValues(results)
+
+        gg.loadResults(gg.getListItems())
+        gg.refineNumber("5", gg.TYPE_DWORD)
+        local count = gg.getResultsCount()               
+        local results = gg.getResults(count)
+        for i, v in ipairs(results) do
+            v.address = v.address + -16
+        end
+        values_5 = gg.getValues(results)
+    end
+
+local mapping = {
+[10111] = {name_5 = "⑤ Elucia", name_6 = "⑥ Elucia", IDAP = 10111},
+[10112] = {name_5 = "⑤ Iselia", name_6 = "⑥ Iselia", IDAP = 10112},
+[10113] = {name_5 = "⑤ Aeilene", name_6 = "⑥ Aeilene", IDAP = 10113},
+[10114] = {name_5 = "⑤ Neal", name_6 = "⑥ Neal", IDAP = 10114},
+[10115] = {name_5 = "⑤ Sorin", name_6 = "⑥ Sorin", IDAP = 10115},
+[10211] = {name_5 = "⑤ Fynn", name_6 = "⑥ Fynn", IDAP = 10211},
+[10212] = {name_5 = "⑤ Cogma", name_6 = "⑥ Cogma", IDAP = 10212},
+[10213] = {name_5 = "⑤ Ralph", name_6 = "⑥ Ralph", IDAP = 10213},
+[10214] = {name_5 = "⑤ Taru", name_6 = "⑥ Taru", IDAP = 10214},
+[10215] = {name_5 = "⑤ Garok", name_6 = "⑥ Garok", IDAP = 10215},
+[10311] = {name_5 = "⑤ Kacey", name_6 = "⑥ Kacey", IDAP = 10311},
+[10312] = {name_5 = "⑤ Tatu", name_6 = "⑥ Tatu", IDAP = 10312},
+[10313] = {name_5 = "⑤ Shannon", name_6 = "⑥ Shannon", IDAP = 10313},
+[10314] = {name_5 = "⑤ Cheryl", name_6 = "⑥ Cheryl", IDAP = 10314},
+[10315] = {name_5 = "⑤ Camaryn", name_6 = "⑥ Camaryn", IDAP = 10315},
+[10411] = {name_5 = "⑤ Kunda", name_6 = "⑥ Kunda", IDAP = 10411},
+[10412] = {name_5 = "⑤ Tantra", name_6 = "⑥ Tantra", IDAP = 10412},
+[10413] = {name_5 = "⑤ Rakaja", name_6 = "⑥ Rakaja", IDAP = 10413},
+[10414] = {name_5 = "⑤ Arkajan", name_6 = "⑥ Arkajan", IDAP = 10414},
+[10415] = {name_5 = "⑤ kumae", name_6 = "⑥ kumae", IDAP = 10415},
+[10511] = {name_5 = "⑤ Ramira", name_6 = "⑥ Ramira", IDAP = 10511},
+[10512] = {name_5 = "⑤ Lucasha", name_6 = "⑥ Lucasha", IDAP = 10512},
+[10513] = {name_5 = "⑤ Prilea", name_6 = "⑥ Prilea", IDAP = 10513},
+[10514] = {name_5 = "⑤ Kabilla", name_6 = "⑥ Kabilla", IDAP = 10514},
+[10515] = {name_5 = "⑤ Hellea", name_6 = "⑥ Hellea", IDAP = 10515},
+[10611] = {name_5 = "⑤ Tarq", name_6 = "⑥ Tarq", IDAP = 10611},
+[10612] = {name_5 = "⑤ Seiq", name_6 = "⑥ Seiq", IDAP = 10612},
+[10613] = {name_5 = "⑤ Gamir", name_6 = "⑥ Gamir", IDAP = 10613},
+[10614] = {name_5 = "⑤ Shamar", name_6 = "⑥ Shamar", IDAP = 10614},
+[10615] = {name_5 = "⑤ Shumar", name_6 = "⑥ Shumar", IDAP = 10615},
+[10711] = {name_5 = "⑤ Dragora", name_6 = "⑥ Dragora", IDAP = 10711},
+[10712] = {name_5 = "⑤ Ursha", name_6 = "⑥ Ursha", IDAP = 10712},
+[10713] = {name_5 = "⑤ Ramagos", name_6 = "⑥ Ramagos", IDAP = 10713},
+[10714] = {name_5 = "⑤ Lusha", name_6 = "⑥ Lusha", IDAP = 10714},
+[10715] = {name_5 = "⑤ Gorgo", name_6 = "⑥ Gorgo", IDAP = 10715},
+[10811] = {name_5 = "⑤ Daharenos", name_6 = "⑥ Daharenos", IDAP = 10811},
+[10812] = {name_5 = "⑤ Bremis", name_6 = "⑥ Bremis", IDAP = 10812},
+[10813] = {name_5 = "⑤ Taharus", name_6 = "⑥ Taharus", IDAP = 10813},
+[10814] = {name_5 = "⑤ Priz", name_6 = "⑥ Priz", IDAP = 10814},
+[10815] = {name_5 = "⑤ Camules", name_6 = "⑥ Camules", IDAP = 10815},
+[10911] = {name_5 = "⑤ Konamiya", name_6 = "⑥ Konamiya", IDAP = 10911},
+[10912] = {name_5 = "⑤ Cahule", name_6 = "⑥ Cahule", IDAP = 10912},
+[10913] = {name_5 = "⑤ Lindermen", name_6 = "⑥ Lindermen", IDAP = 10913},
+[10914] = {name_5 = "⑤ Teon", name_6 = "⑥ Teon", IDAP = 10914},
+[10915] = {name_5 = "⑤ Rizak", name_6 = "⑥ Rizak", IDAP = 10915},
+[11011] = {name_5 = "⑤ Icaru", name_6 = "⑥ Icaru", IDAP = 11011},
+[11012] = {name_5 = "⑤ Raoq", name_6 = "⑥ Raoq", IDAP = 11012},
+[11013] = {name_5 = "⑤ Ramaha", name_6 = "⑥ Ramaha", IDAP = 11013},
+[11014] = {name_5 = "⑤ Belladeon", name_6 = "⑥ Belladeon", IDAP = 11014},
+[11015] = {name_5 = "⑤ Kro", name_6 = "⑥ Kro", IDAP = 11015},
+[11111] = {name_5 = "⑤ Kaimann", name_6 = "⑥ Kaimann", IDAP = 11111},
+[11112] = {name_5 = "⑤ Krakdon", name_6 = "⑥ Krakdon", IDAP = 11112},
+[11113] = {name_5 = "⑤ Lukan", name_6 = "⑥ Lukan", IDAP = 11113},
+[11114] = {name_5 = "⑤ Sharman", name_6 = "⑥ Sharman", IDAP = 11114},
+[11115] = {name_5 = "⑤ Decamaron", name_6 = "⑥ Decamaron", IDAP = 11115},
+[11211] = {name_5 = "⑤ Soha", name_6 = "⑥ Soha", IDAP = 11211},
+[11212] = {name_5 = "⑤ Shiwa", name_6 = "⑥ Shiwa", IDAP = 11212},
+[11213] = {name_5 = "⑤ Arang", name_6 = "⑥ Arang", IDAP = 11213},
+[11214] = {name_5 = "⑤ Chamie", name_6 = "⑥ Chamie", IDAP = 11214},
+[11215] = {name_5 = "⑤ Kamiya", name_6 = "⑥ Kamiya", IDAP = 11215},
+[11311] = {name_5 = "⑤ Shailoq", name_6 = "⑥ Shailoq", IDAP = 11311},
+[11312] = {name_5 = "⑤ Fao", name_6 = "⑥ Fao", IDAP = 11312},
+[11313] = {name_5 = "⑤ Ermeda", name_6 = "⑥ Ermeda", IDAP = 11313},
+[11314] = {name_5 = "⑤ Elpuria", name_6 = "⑥ Elpuria", IDAP = 11314},
+[11315] = {name_5 = "⑤ Mantura", name_6 = "⑥ Mantura", IDAP = 11315},
+[11411] = {name_5 = "⑤ Kuhn", name_6 = "⑥ Kuhn", IDAP = 11411},
+[11412] = {name_5 = "⑤ Kugo", name_6 = "⑥ Kugo", IDAP = 11412},
+[11413] = {name_5 = "⑤ Ragion", name_6 = "⑥ Ragion", IDAP = 11413},
+[11414] = {name_5 = "⑤ Groggo", name_6 = "⑥ Groggo", IDAP = 11414},
+[11415] = {name_5 = "⑤ Maggi", name_6 = "⑥ Maggi", IDAP = 11415},
+[11511] = {name_5 = "⑤ Kahn", name_6 = "⑥ Kahn", IDAP = 11511},
+[11512] = {name_5 = "⑤ Spectra", name_6 = "⑥ Spectra", IDAP = 11512},
+[11513] = {name_5 = "⑤ Bernard", name_6 = "⑥ Bernard", IDAP = 11513},
+[11514] = {name_5 = "⑤ Shamann", name_6 = "⑥ Shamann", IDAP = 11514},
+[11515] = {name_5 = "⑤ Varus", name_6 = "⑥ Varus", IDAP = 11515},
+[11611] = {name_5 = "⑤ Mikene", name_6 = "⑥ Mikene", IDAP = 11611},
+[11612] = {name_5 = "⑤ Atenai", name_6 = "⑥ Atenai", IDAP = 11612},
+[11613] = {name_5 = "⑤ Delphoi", name_6 = "⑥ Delphoi", IDAP = 11613},
+[11614] = {name_5 = "⑤ Icasha", name_6 = "⑥ Icasha", IDAP = 11614},
+[11615] = {name_5 = "⑤ Tilasha", name_6 = "⑥ Tilasha", IDAP = 11615},
+[11711] = {name_5 = "⑤ Purian", name_6 = "⑥ Purian", IDAP = 11711},
+[11712] = {name_5 = "⑤ Tagaros", name_6 = "⑥ Tagaros", IDAP = 11712},
+[11713] = {name_5 = "⑤ Anduril", name_6 = "⑥ Anduril", IDAP = 11713},
+[11714] = {name_5 = "⑤ Eludian", name_6 = "⑥ Eludian", IDAP = 11714},
+[11715] = {name_5 = "⑤ Drogan", name_6 = "⑥ Drogan", IDAP = 11715},
+[11811] = {name_5 = "⑤ Tyron", name_6 = "⑥ Tyron", IDAP = 11811},
+[11812] = {name_5 = "⑤ Baretta", name_6 = "⑥ Baretta", IDAP = 11812},
+[11813] = {name_5 = "⑤ Shimitae", name_6 = "⑥ Shimitae", IDAP = 11813},
+[11814] = {name_5 = "⑤ Eredas", name_6 = "⑥ Eredas", IDAP = 11814},
+[11815] = {name_5 = "⑤ Aschubel", name_6 = "⑥ Aschubel", IDAP = 11815},
+[11911] = {name_5 = "⑤ Lumirecia", name_6 = "⑥ Lumirecia", IDAP = 11911},
+[11912] = {name_5 = "⑤ Fria", name_6 = "⑥ Fria", IDAP = 11912},
+[11913] = {name_5 = "⑤ Ascasis", name_6 = "⑥ Ascasis", IDAP = 11913},
+[11914] = {name_5 = "⑤ Mihael", name_6 = "⑥ Mihael", IDAP = 11914},
+[11915] = {name_5 = "⑤ Icares", name_6 = "⑥ Icares", IDAP = 11915},
+[12011] = {name_5 = "⑤ Ellena", name_6 = "⑥ Ellena", IDAP = 12011},
+[12012] = {name_5 = "⑤ Kahli", name_6 = "⑥ Kahli", IDAP = 12012},
+[12013] = {name_5 = "⑤ Moria", name_6 = "⑥ Moria", IDAP = 12013},
+[12014] = {name_5 = "⑤ Shren", name_6 = "⑥ Shren", IDAP = 12014},
+[12015] = {name_5 = "⑤ Lumaline", name_6 = "⑥ Lumaline", IDAP = 12015},
+[12111] = {name_5 = "⑤ Sisroo", name_6 = "⑥ Sisroo", IDAP = 12111},
+[12112] = {name_5 = "⑤ Colleen", name_6 = "⑥ Colleen", IDAP = 12112},
+[12113] = {name_5 = "⑤ Seal", name_6 = "⑥ Seal", IDAP = 12113},
+[12114] = {name_5 = "⑤ Sia", name_6 = "⑥ Sia", IDAP = 12114},
+[12115] = {name_5 = "⑤ Seren", name_6 = "⑥ Seren", IDAP = 12115},
+[1000111] = {name_5 = "⑤ Homunculus water", name_6 = "⑥ Homunculus water", IDAP = 1000111},
+[1000112] = {name_5 = "⑤ Houmunculus fire", name_6 = "⑥ Homunculus fire", IDAP = 1000112},
+[1000113] = {name_5 = "⑤ Homunculus wind5★", name_6 = "⑥ Homunculus wind", IDAP = 1000113},
+[1000214] = {name_5 = "⑤ Houmunculus light", name_6 = "⑥ Homunculus light", IDAP = 1000214},
+[1000215] = {name_5 = "⑤ Houmunculus dark", name_6 = "⑥ Homunculus dark", IDAP = 1000215},
+[13211] = {name_5 = "⑤ Lulu", name_6 = "⑥ Lulu", IDAP = 13211},
+[13212] = {name_5 = "⑤ Lala", name_6 = "⑥ Lala", IDAP = 13212},
+[13213] = {name_5 = "⑤ Chichi", name_6 = "⑥ Chichi", IDAP = 13213},
+[13214] = {name_5 = "⑤ Shushu", name_6 = "⑥ Shushu", IDAP = 13214},
+[13215] = {name_5 = "⑤ Chacha", name_6 = "⑥ Chacha", IDAP = 13215},
+[13311] = {name_5 = "⑤ Lzaria", name_6 = "⑥ Lzaria", IDAP = 13311},
+[13312] = {name_5 = "⑤ AKia", name_6 = "⑥ AKia", IDAP = 13312},
+[13313] = {name_5 = "⑤ Selena", name_6 = "⑥ Selena", IDAP = 13313},
+[13314] = {name_5 = "⑤ Aria", name_6 = "⑥ Aria", IDAP = 13314},
+[13315] = {name_5 = "⑤ Isael", name_6 = "⑥ Isael", IDAP = 13315},
+[13411] = {name_5 = "⑤ Sian", name_6 = "⑥ Sian", IDAP = 13411},
+[13412] = {name_5 = "⑤ Jojo", name_6 = "⑥ Jojo", IDAP = 13412},
+[13413] = {name_5 = "⑤ Lushen", name_6 = "⑥ Lushen", IDAP = 13413},
+[13414] = {name_5 = "⑤ Figaro", name_6 = "⑥ Figaro", IDAP = 13414},
+[13415] = {name_5 = "⑤ Liebli", name_6 = "⑥ Liebli", IDAP = 13415},
+[13511] = {name_5 = "⑤ Susano", name_6 = "⑥ Susano", IDAP = 13511},
+[13512] = {name_5 = "⑤ Garo", name_6 = "⑥ Garo", IDAP = 13512},
+[13513] = {name_5 = "⑤ Orichi", name_6 = "⑥ Orichi", IDAP = 13513},
+[13514] = {name_5 = "⑤ Gin", name_6 = "⑥ Gin", IDAP = 13514},
+[13515] = {name_5 = "⑤ Han", name_6 = "⑥ Han", IDAP = 13515},
+[13711] = {name_5 = "⑤ Gruda", name_6 = "⑥ Gruda", IDAP = 13711},
+[13712] = {name_5 = "⑤ Kungeon", name_6 = "⑥ Kungeon", IDAP = 13712},
+[13713] = {name_5 = "⑤ Dagorr", name_6 = "⑥ Dagorr", IDAP = 13713},
+[13714] = {name_5 = "⑤ Ahman", name_6 = "⑥ Ahman", IDAP = 13714},
+[13715] = {name_5 = "⑤ Hanken", name_6 = "⑥ Hanken", IDAP = 13715},
+[13811] = {name_5 = "⑤ Camilla", name_6 = "⑥ Camilla", IDAP = 13811},
+[13812] = {name_5 = "⑤ Venessa", name_6 = "⑥ Venessa", IDAP = 13812},
+[13813] = {name_5 = "⑤ Katarina", name_6 = "⑥ Katarina", IDAP = 13813},
+[13814] = {name_5 = "⑤ Akroma", name_6 = "⑥ Akroma", IDAP = 13814},
+[13815] = {name_5 = "⑤ Trinity", name_6 = "⑥ Trinity", IDAP = 13815},
+[13911] = {name_5 = "⑤ Julie", name_6 = "⑥ Julie", IDAP = 13911},
+[13912] = {name_5 = "⑤ Clara", name_6 = "⑥ Clara", IDAP = 13912},
+[13913] = {name_5 = "⑤ Sophie", name_6 = "⑥ Sophie", IDAP = 13913},
+[13914] = {name_5 = "⑤ Eva", name_6 = "⑥ Eva", IDAP = 13914},
+[13915] = {name_5 = "⑤ Luna", name_6 = "⑥ Luna", IDAP = 13915},
+[14011] = {name_5 = "⑤ Vigor", name_6 = "⑥ Vigor", IDAP = 14011},
+[14012] = {name_5 = "⑤ Garoche", name_6 = "⑥ Garoche", IDAP = 14012},
+[14013] = {name_5 = "⑤ Shaken", name_6 = "⑥ Shaken", IDAP = 14013},
+[14014] = {name_5 = "⑤ Eshir", name_6 = "⑥ Eshir", IDAP = 14014},
+[14015] = {name_5 = "⑤ jultan", name_6 = "⑥ jultan", IDAP = 14015},
+[14111] = {name_5 = "⑤ Luer", name_6 = "⑥ Luer", IDAP = 14111},
+[14112] = {name_5 = "⑤ Hean", name_6 = "⑥ Hean", IDAP = 14112},
+[14113] = {name_5 = "⑤ Juilen", name_6 = "⑥ Juilen", IDAP = 14113},
+[14114] = {name_5 = "⑤ Louis", name_6 = "⑥ Louis", IDAP = 14114},
+[14115] = {name_5 = "⑤ Guillaume", name_6 = "⑥ Guillaume", IDAP = 14115},
+[14411] = {name_5 = "⑤ Verad", name_6 = "⑥ Verad", IDAP = 14411},
+[14412] = {name_5 = "⑤ Zaiross", name_6 = "⑥ Zaiross", IDAP = 14412},
+[14413] = {name_5 = "⑤ Jammire", name_6 = "⑥ Jammire", IDAP = 14413},
+[14414] = {name_5 = "⑤ Zerath", name_6 = "⑥ Zerath", IDAP = 14414},
+[14415] = {name_5 = "⑤ Grogen", name_6 = "⑥ Grogen", IDAP = 14415},
+[14511] = {name_5 = "⑤ Sigmarus", name_6 = "⑥ Sigmarus", IDAP = 14511},
+[14512] = {name_5 = "⑤ Perna", name_6 = "⑥ Perna", IDAP = 14512},
+[14513] = {name_5 = "⑤ Teshar,", name_6 = "⑥ Teshar,", IDAP = 14513},
+[14514] = {name_5 = "⑤ ELudian", name_6 = "⑥ ELudian", IDAP = 14514},
+[14515] = {name_5 = "⑤ Jaara", name_6 = "⑥ Jaara", IDAP = 14515},
+[14611] = {name_5 = "⑤ Taor", name_6 = "⑥ Taor", IDAP = 14611},
+[14612] = {name_5 = "⑤ Rakan", name_6 = "⑥ Rakan", IDAP = 14612},
+[14613] = {name_5 = "⑤ Lagmaron", name_6 = "⑥ Lagmaron", IDAP = 14613},
+[14614] = {name_5 = "⑤ Shan", name_6 = "⑥ Shan", IDAP = 14614},
+[14615] = {name_5 = "⑤ Zerarus", name_6 = "⑥ Zerarus", IDAP = 14615},
+[14711] = {name_5 = "⑤ Liesel", name_6 = "⑥ Liesel", IDAP = 14711},
+[14712] = {name_5 = "⑤ Vaerdehile", name_6 = "⑥ Vaerdehile", IDAP = 14712},
+[14713] = {name_5 = "⑤ Argen", name_6 = "⑥ Argen", IDAP = 14713},
+[14714] = {name_5 = "⑤ Julianne", name_6 = "⑥ Julianne", IDAP = 14714},
+[14715] = {name_5 = "⑤ Cadiz", name_6 = "⑥ Cadiz", IDAP = 14715},
+[14811] = {name_5 = "⑤ Huga", name_6 = "⑥ Huga", IDAP = 14811},
+[14812] = {name_5 = "⑤ Geoffrey", name_6 = "⑥ Geoffrey", IDAP = 14812},
+[14813] = {name_5 = "⑤ Walter", name_6 = "⑥ Walter", IDAP = 14813},
+[14814] = {name_5 = "⑤ Jansson", name_6 = "⑥ Jansson", IDAP = 14814},
+[14815] = {name_5 = "⑤ Janssen", name_6 = "⑥ Janssen", IDAP = 14815},
+[14911] = {name_5 = "⑤ Ellin", name_6 = "⑥ Ellin", IDAP = 14911},
+[14912] = {name_5 = "⑤ Ceres", name_6 = "⑥ Ceres", IDAP = 14912},
+[14913] = {name_5 = "⑤ Hina", name_6 = "⑥ Hina", IDAP = 14913},
+[14914] = {name_5 = "⑤ Lyn", name_6 = "⑥ Lyn", IDAP = 14914},
+[14915] = {name_5 = "⑤ Mara", name_6 = "⑥ Mara", IDAP = 14915},
+[15011] = {name_5 = "⑤ Mina", name_6 = "⑥ Mina", IDAP = 15011},
+[15012] = {name_5 = "⑤ Mei", name_6 = "⑥ Mei", IDAP = 15012},
+[15013] = {name_5 = "⑤ Naomi", name_6 = "⑥ Naomi", IDAP = 15013},
+[15014] = {name_5 = "⑤ Xiao Ling", name_6 = "⑥ Xiao Ling", IDAP = 15014},
+[15015] = {name_5 = "⑤ Miho", name_6 = "⑥ Miho", IDAP = 15015},
+[15211] = {name_5 = "⑤ Galleon", name_6 = "⑥ Galleon", IDAP = 15211},
+[15212] = {name_5 = "⑤ Carrack", name_6 = "⑥ Carrack", IDAP = 15212},
+[15213] = {name_5 = "⑤ Barque", name_6 = "⑥ Barque", IDAP = 15213},
+[15214] = {name_5 = "⑤ Brig", name_6 = "⑥ Brig", IDAP = 15214},
+[15215] = {name_5 = "⑤ Frigate", name_6 = "⑥ Frigate", IDAP = 15215},
+[15311] = {name_5 = "⑤ Rina", name_6 = "⑥ Rina", IDAP = 15311},
+[15312] = {name_5 = "⑤ Chloe", name_6 = "⑥ Chloe", IDAP = 15312},
+[15313] = {name_5 = "⑤ Michelle", name_6 = "⑥ Michelle", IDAP = 15313},
+[15314] = {name_5 = "⑤ Iona", name_6 = "⑥ Iona", IDAP = 15314},
+[15315] = {name_5 = "⑤ Rasheed", name_6 = "⑥ Rasheed", IDAP = 15315},
+[15411] = {name_5 = "⑤ Sharron", name_6 = "⑥ Sharron", IDAP = 15411},
+[15412] = {name_5 = "⑤ Cassandra", name_6 = "⑥ Cassandra", IDAP = 15412},
+[15413] = {name_5 = "⑤ Ardella", name_6 = "⑥ Ardella", IDAP = 15413},
+[15414] = {name_5 = "⑤ Chris", name_6 = "⑥ Chris", IDAP = 15414},
+[15415] = {name_5 = "⑤ Bethony", name_6 = "⑥ Bethony", IDAP = 15415},
+[15511] = {name_5 = "⑤ Su", name_6 = "⑥ Su", IDAP = 15511},
+[15512] = {name_5 = "⑤ Hwa", name_6 = "⑥ Hwa", IDAP = 15512},
+[15513] = {name_5 = "⑤ Yen", name_6 = "⑥ Yen", IDAP = 15513},
+[15514] = {name_5 = "⑤ Pang", name_6 = "⑥ Pang", IDAP = 15514},
+[15515] = {name_5 = "⑤ Ran", name_6 = "⑥ Ran", IDAP = 15515},
+[15611] = {name_5 = "⑤ Wayne", name_6 = "⑥ Wayne", IDAP = 15611},
+[15612] = {name_5 = "⑤ Randy", name_6 = "⑥ Randy", IDAP = 15612},
+[15613] = {name_5 = "⑤ Roger", name_6 = "⑥ Roger", IDAP = 15613},
+[15614] = {name_5 = "⑤ Walkers", name_6 = "⑥ Walkers", IDAP = 15614},
+[15615] = {name_5 = "⑤ Jamie", name_6 = "⑥ Jamie", IDAP = 15615},
+[15711] = {name_5 = "⑤ Praha", name_6 = "⑥ Praha", IDAP = 15711},
+[15712] = {name_5 = "⑤ Juno", name_6 = "⑥ Juno", IDAP = 15712},
+[15713] = {name_5 = "⑤ Seara", name_6 = "⑥ Seara", IDAP = 15713},
+[15714] = {name_5 = "⑤ Laima", name_6 = "⑥ Laima", IDAP = 15714},
+[15715] = {name_5 = "⑤ Gianna", name_6 = "⑥ Gianna", IDAP = 15715},
+[15811] = {name_5 = "⑤ Yaku", name_6 = "⑥ Yaku", IDAP = 15811},
+[15812] = {name_5 = "⑤ Fairo", name_6 = "⑥ Fairo", IDAP = 15812},
+[15813] = {name_5 = "⑤ Pigma", name_6 = "⑥ Pigma", IDAP = 15813},
+[15814] = {name_5 = "⑤ Shaffon", name_6 = "⑥ Shaffon", IDAP = 15814},
+[15815] = {name_5 = "⑤ Loque", name_6 = "⑥ Loque", IDAP = 15815},
+[15911] = {name_5 = "⑤ Megan", name_6 = "⑥ Megan", IDAP = 15911},
+[15912] = {name_5 = "⑤ Rebecca", name_6 = "⑥ Rebecca", IDAP = 15912},
+[15913] = {name_5 = "⑤ Silia", name_6 = "⑥ Silia", IDAP = 15913},
+[15914] = {name_5 = "⑤ Linda", name_6 = "⑥ Linda", IDAP = 15914},
+[15915] = {name_5 = "⑤ Gina", name_6 = "⑥ Gina", IDAP = 15915},
+[16011] = {name_5 = "⑤ Hemos", name_6 = "⑥ Hemos", IDAP = 16011},
+[16012] = {name_5 = "⑤ Sath", name_6 = "⑥ Sath", IDAP = 16012},
+[16013] = {name_5 = "⑤ hiva", name_6 = "⑥ hiva", IDAP = 16013},
+[16014] = {name_5 = "⑤ Prom", name_6 = "⑥ Prom", IDAP = 16014},
+[16015] = {name_5 = "⑤ Thrain", name_6 = "⑥ Thrain", IDAP = 16015},
+[16111] = {name_5 = "⑤ Anavel", name_6 = "⑥ Anavel", IDAP = 16111},
+[16112] = {name_5 = "⑤ Rica", name_6 = "⑥ Rica", IDAP = 16112},
+[16113] = {name_5 = "⑤ Charlotte", name_6 = "⑥ Charlotte", IDAP = 16113},
+[16114] = {name_5 = "⑤ Lora", name_6 = "⑥ Lora", IDAP = 16114},
+[16115] = {name_5 = "⑤ Nicki", name_6 = "⑥ Nicki", IDAP = 16115},
+[16211] = {name_5 = "⑤ Fedonra", name_6 = "⑥ Fedonra", IDAP = 16211},
+[16212] = {name_5 = "⑤ Armold", name_6 = "⑥ Armold", IDAP = 16212},
+[16213] = {name_5 = "⑤ Briand", name_6 = "⑥ Briand", IDAP = 16213},
+[16214] = {name_5 = "⑤ Conrad", name_6 = "⑥ Conrad", IDAP = 16214},
+[16215] = {name_5 = "⑤ Dias", name_6 = "⑥ Dias", IDAP = 16215},
+[16311] = {name_5 = "⑤ Rigel", name_6 = "⑥ Rigel", IDAP = 16311},
+[16312] = {name_5 = "⑤ Antares", name_6 = "⑥ Antares", IDAP = 16312},
+[16313] = {name_5 = "⑤ Fuco", name_6 = "⑥ Fuco", IDAP = 16313},
+[16314] = {name_5 = "⑤ Halphas", name_6 = "⑥ Halphas", IDAP = 16314},
+[16315] = {name_5 = "⑤ Grego", name_6 = "⑥ Grego", IDAP = 16315},
+[16511] = {name_5 = "⑤ Nickel", name_6 = "⑥ Nickel", IDAP = 16511},
+[16512] = {name_5 = "⑤ Iron", name_6 = "⑥ Iron", IDAP = 16512},
+[16513] = {name_5 = "⑤ Copper", name_6 = "⑥ Copper", IDAP = 16513},
+[16514] = {name_5 = "⑤ Silver", name_6 = "⑥ Silver", IDAP = 16514},
+[16515] = {name_5 = "⑤ Zinc", name_6 = "⑥ Zinc", IDAP = 16515},
+[16611] = {name_5 = "⑤ Chow", name_6 = "⑥ Chow", IDAP = 16611},
+[16612] = {name_5 = "⑤ Laik", name_6 = "⑥ Laik", IDAP = 16612},
+[16613] = {name_5 = "⑤ Leo", name_6 = "⑥ Leo", IDAP = 16613},
+[16614] = {name_5 = "⑤ Jager", name_6 = "⑥ Jager", IDAP = 16614},
+[16615] = {name_5 = "⑤ Ragdoll", name_6 = "⑥ Ragdoll", IDAP = 16615},
+[16714] = {name_5 = "⑤ Fami", name_6 = "⑥ Fami", IDAP = 16714},
+[16811] = {name_5 = "⑤ Shi Hou", name_6 = "⑥ Shi Hou", IDAP = 16811},
+[16812] = {name_5 = "⑤ Mei Hou Wang", name_6 = "⑥ Mei Hou Wang", IDAP = 16812},
+[16813] = {name_5 = "⑤ Xing Zhe", name_6 = "⑥ Xing Zhe", IDAP = 16813},
+[16814] = {name_5 = "⑤ Qitian Dasheng", name_6 = "⑥ Qitian Dasheng", IDAP = 16814},
+[16815] = {name_5 = "⑤ Son Zhang Lao", name_6 = "⑥ Son Zhang Lao", IDAP = 16815},
+[16911] = {name_5 = "⑤ Kaz", name_6 = "⑥ Kaz", IDAP = 16911},
+[16912] = {name_5 = "⑤ Jun", name_6 = "⑥ Jun", IDAP = 16912},
+[16913] = {name_5 = "⑤ Kaito", name_6 = "⑥ Kaito", IDAP = 16913},
+[16914] = {name_5 = "⑤ Tosi", name_6 = "⑥ Tosi", IDAP = 16914},
+[16915] = {name_5 = "⑤ Sige", name_6 = "⑥ Sige", IDAP = 16915},
+[17011] = {name_5 = "⑤ Ariel", name_6 = "⑥ Ariel", IDAP = 17011},
+[17012] = {name_5 = "⑤ Velajuel", name_6 = "⑥ Velajuel", IDAP = 17012},
+[17013] = {name_5 = "⑤ Eladriel", name_6 = "⑥ Eladriel", IDAP = 17013},
+[17014] = {name_5 = "⑤ Artamiel", name_6 = "⑥ Artamiel", IDAP = 17014},
+[17015] = {name_5 = "⑤ Fermion", name_6 = "⑥ Fermion", IDAP = 17015},
+[17211] = {name_5 = "⑤ Mao", name_6 = "⑥ Mao", IDAP = 17211},
+[17212] = {name_5 = "⑤ Xiao Chun", name_6 = "⑥ Xiao Chun", IDAP = 17212},
+[17213] = {name_5 = "⑤ Huan", name_6 = "⑥ Huan", IDAP = 17213},
+[17214] = {name_5 = "⑤ Tien Qin", name_6 = "⑥ Tien Qin", IDAP = 17214},
+[17215] = {name_5 = "⑤ Wei Shin", name_6 = "⑥ Wei Shin", IDAP = 17215},
+[17311] = {name_5 = "⑤ Xiao Lin", name_6 = "⑥ Xiao Lin", IDAP = 17311},
+[17312] = {name_5 = "⑤ Hong Hua", name_6 = "⑥ Hong Hua", IDAP = 17312},
+[17313] = {name_5 = "⑤ Ling Ling", name_6 = "⑥ Ling Ling", IDAP = 17313},
+[17314] = {name_5 = "⑤ Liu Mei", name_6 = "⑥ Liu Mei", IDAP = 17314},
+[17315] = {name_5 = "⑤ Fei", name_6 = "⑥ Fei", IDAP = 17315},
+[17411] = {name_5 = "⑤ Chandra", name_6 = "⑥ Chandra", IDAP = 17411},
+[17412] = {name_5 = "⑤ Kumar", name_6 = "⑥ Kumar", IDAP = 17412},
+[17413] = {name_5 = "⑤ Ritesh", name_6 = "⑥ Ritesh", IDAP = 17413},
+[17414] = {name_5 = "⑤ Shazam", name_6 = "⑥ Shazam", IDAP = 17414},
+[17415] = {name_5 = "⑤ Rahul", name_6 = "⑥ Rahul", IDAP = 17415},
+[17711] = {name_5 = "⑤ Urtau", name_6 = "⑥ Urtau", IDAP = 17711},
+[17712] = {name_5 = "⑤ Burentau", name_6 = "⑥ Burentau", IDAP = 17712},
+[17713] = {name_5 = "⑤ Eintau", name_6 = "⑥ Eintau", IDAP = 17713},
+[17714] = {name_5 = "⑤ Grotau", name_6 = "⑥ Grotau", IDAP = 17714},
+[17715] = {name_5 = "⑤ Kamatau", name_6 = "⑥ Kamatau", IDAP = 17715},
+[17811] = {name_5 = "⑤ Ketmodon", name_6 = "⑥ Ketmodon", IDAP = 17811},
+[17812] = {name_5 = "⑤ Igmanodon", name_6 = "⑥ Igmanodon", IDAP = 17812},
+[17813] = {name_5 = "⑤ Velfinodon", name_6 = "⑥ Velfinodon", IDAP = 17813},
+[17814] = {name_5 = "⑤ Glinodon", name_6 = "⑥ Glinodon", IDAP = 17814},
+[17815] = {name_5 = "⑤ Devinodon", name_6 = "⑥ Devinodon", IDAP = 17815},
+[17911] = {name_5 = "⑤ Beth", name_6 = "⑥ Beth", IDAP = 17911},
+[17912] = {name_5 = "⑤ Raki", name_6 = "⑥ Raki", IDAP = 17912},
+[17913] = {name_5 = "⑤ Ethna", name_6 = "⑥ Ethna", IDAP = 17913},
+[17914] = {name_5 = "⑤ Asima", name_6 = "⑥ Asima", IDAP = 17914},
+[17915] = {name_5 = "⑤ Craka", name_6 = "⑥ Craka", IDAP = 17915},
+[18011] = {name_5 = "⑤ Orion", name_6 = "⑥ Orion", IDAP = 18011},
+[18012] = {name_5 = "⑤ Draco", name_6 = "⑥ Draco", IDAP = 18012},
+[18013] = {name_5 = "⑤ Aquila", name_6 = "⑥ Aquila", IDAP = 18013},
+[18014] = {name_5 = "⑤ Gemini", name_6 = "⑥ Gemini", IDAP = 18014},
+[18015] = {name_5 = "⑤ Korona", name_6 = "⑥ Korona", IDAP = 18015},
+[18111] = {name_5 = "⑤ Malaka", name_6 = "⑥ Malaka", IDAP = 18111},
+[18112] = {name_5 = "⑤ Zibroltqa", name_6 = "⑥ Zibroltqa", IDAP = 18112},
+[18113] = {name_5 = "⑤ Taurus", name_6 = "⑥ Taurus", IDAP = 18113},
+[18114] = {name_5 = "⑤ Dover", name_6 = "⑥ Dover", IDAP = 18114},
+[18115] = {name_5 = "⑤ Dering", name_6 = "⑥ Dering", IDAP = 18115},
+[18311] = {name_5 = "⑤ Mihyang", name_6 = "⑥ Mihyang", IDAP = 18311},
+[18312] = {name_5 = "⑤ Hwahee", name_6 = "⑥ Hwahee", IDAP = 18312},
+[18313] = {name_5 = "⑤ Chassun", name_6 = "⑥ Chassun", IDAP = 18313},
+[18314] = {name_5 = "⑤ Yeonhong", name_6 = "⑥ Yeonhong", IDAP = 18314},
+[18315] = {name_5 = "⑤ Wolyung", name_6 = "⑥ Wolyung", IDAP = 18315},
+[18411] = {name_5 = "⑤ Gildong", name_6 = "⑥ Gildong", IDAP = 18411},
+[18412] = {name_5 = "⑤ Gunpyeong", name_6 = "⑥ Gunpyeong", IDAP = 18412},
+[18413] = {name_5 = "⑤ Woochi", name_6 = "⑥ Woochi", IDAP = 18413},
+[18414] = {name_5 = "⑤ Hwadam", name_6 = "⑥ Hwadam", IDAP = 18414},
+[18415] = {name_5 = "⑤ Woonhak", name_6 = "⑥ Woonhak", IDAP = 18415},
+[18611] = {name_5 = "⑤ Woosa", name_6 = "⑥ Woosa", IDAP = 18611},
+[18612] = {name_5 = "⑤ Chiwu", name_6 = "⑥ Chiwu", IDAP = 18612},
+[18613] = {name_5 = "⑤ Pungbeak", name_6 = "⑥ Pungbeak", IDAP = 18613},
+[18614] = {name_5 = "⑤ Nigon", name_6 = "⑥ Nigon", IDAP = 18614},
+[18615] = {name_5 = "⑤ Woonsa", name_6 = "⑥ Woonsa", IDAP = 18615},
+[18711] = {name_5 = "⑤ Toma", name_6 = "⑥ Toma", IDAP = 18711},
+[18712] = {name_5 = "⑤ Naki", name_6 = "⑥ Naki", IDAP = 18712},
+[18713] = {name_5 = "⑤ Maw", name_6 = "⑥ Maw", IDAP = 18713},
+[18714] = {name_5 = "⑤ Dona", name_6 = "⑥ Dona", IDAP = 18714},
+[18715] = {name_5 = "⑤ Kuna", name_6 = "⑥ Kuna", IDAP = 18715},
+[18811] = {name_5 = "⑤ Aegir", name_6 = "⑥ Aegir", IDAP = 18811},
+[18812] = {name_5 = "⑤ Surtr", name_6 = "⑥ Surtr", IDAP = 18812},
+[18813] = {name_5 = "⑤ Hraesselg", name_6 = "⑥ Hraesselg", IDAP = 18813},
+[18814] = {name_5 = "⑤ Mimirr", name_6 = "⑥ Mimirr", IDAP = 18814},
+[18815] = {name_5 = "⑤ Hringnir", name_6 = "⑥ Hringnir", IDAP = 18815},
+[18911] = {name_5 = "⑤ Alicia", name_6 = "⑥ Alicia", IDAP = 18911},
+[18912] = {name_5 = "⑤ Brandian", name_6 = "⑥ Brandian", IDAP = 18912},
+[18913] = {name_5 = "⑤ Tiana", name_6 = "⑥ Tiana", IDAP = 18913},
+[18914] = {name_5 = "⑤ Elenoa", name_6 = "⑥ Elenoa", IDAP = 18914},
+[18915] = {name_5 = "⑤ Lydia", name_6 = "⑥ Lydia", IDAP = 18915},
+[19011] = {name_5 = "⑤ Talc", name_6 = "⑥ Talc", IDAP = 19011},
+[19012] = {name_5 = "⑤ Granite", name_6 = "⑥ Granite", IDAP = 19012},
+[19013] = {name_5 = "⑤ Olvine", name_6 = "⑥ Olvine", IDAP = 19013},
+[19014] = {name_5 = "⑤ Marble", name_6 = "⑥ Marble", IDAP = 19014},
+[19015] = {name_5 = "⑤ Basalt", name_6 = "⑥ Basalt", IDAP = 19015},
+[19114] = {name_5 = "⑤ Fran", name_6 = "⑥ Fran", IDAP = 19114},
+[19211] = {name_5 = "⑤ Theomars", name_6 = "⑥ Theomars", IDAP = 19211},
+[19212] = {name_5 = "⑤ Tesarion", name_6 = "⑥ Tesarion", IDAP = 19212},
+[19213] = {name_5 = "⑤ Akhamamir", name_6 = "⑥ Akhamamir", IDAP = 19213},
+[19214] = {name_5 = "⑤ Elsharion", name_6 = "⑥ Elsharion", IDAP = 19214},
+[19215] = {name_5 = "⑤ Veromos", name_6 = "⑥ Veromos", IDAP = 19215},
+[19311] = {name_5 = "⑤ Sera", name_6 = "⑥ Sera", IDAP = 19311},
+[19312] = {name_5 = "⑤ Anne", name_6 = "⑥ Anne", IDAP = 19312},
+[19313] = {name_5 = "⑤ Hannah", name_6 = "⑥ Hannah", IDAP = 19313},
+[19314] = {name_5 = "⑤ Loren", name_6 = "⑥ Loren", IDAP = 19314},
+[19315] = {name_5 = "⑤ Cassie", name_6 = "⑥ Cassie", IDAP = 19315},
+[19411] = {name_5 = "⑤ Galleon", name_6 = "⑥ Galleon", IDAP = 19411},
+[19412] = {name_5 = "⑤ Carrack", name_6 = "⑥ Carrack", IDAP = 19412},
+[19413] = {name_5 = "⑤ Barque", name_6 = "⑥ Barque", IDAP = 19413},
+[19414] = {name_5 = "⑤ Brig", name_6 = "⑥ Brig", IDAP = 19414},
+[19415] = {name_5 = "⑤ Frigate", name_6 = "⑥ Frigate", IDAP = 19415},
+[19511] = {name_5 = "⑤ Aqcus", name_6 = "⑥ Aqcus", IDAP = 19511},
+[19512] = {name_5 = "⑤ Ignicus", name_6 = "⑥ Ignicus", IDAP = 19512},
+[19513] = {name_5 = "⑤ Zephicus", name_6 = "⑥ Zephicus", IDAP = 19513},
+[19514] = {name_5 = "⑤ Rumicus", name_6 = "⑥ Rumicus", IDAP = 19514},
+[19515] = {name_5 = "⑤ Calicus", name_6 = "⑥ Calicus", IDAP = 19515},
+[19611] = {name_5 = "⑤ Tetra", name_6 = "⑥ Tetra", IDAP = 19611},
+[19612] = {name_5 = "⑤ Platy", name_6 = "⑥ Platy", IDAP = 19612},
+[19613] = {name_5 = "⑤ Cichlid", name_6 = "⑥ Cichlid", IDAP = 19613},
+[19614] = {name_5 = "⑤ Moly", name_6 = "⑥ Moly", IDAP = 19614},
+[19615] = {name_5 = "⑤ Betta", name_6 = "⑥ Betta", IDAP = 19615},
+[19711] = {name_5 = "⑤ Poseidon", name_6 = "⑥ Poseidon", IDAP = 19711},
+[19712] = {name_5 = "⑤ Okeanos", name_6 = "⑥ Okeanos", IDAP = 19712},
+[19713] = {name_5 = "⑤ triton", name_6 = "⑥ triton", IDAP = 19713},
+[19714] = {name_5 = "⑤ Pontos", name_6 = "⑥ Pontos", IDAP = 19714},
+[19715] = {name_5 = "⑤ Mananan", name_6 = "⑥ Mananan", IDAP = 19715},
+[19811] = {name_5 = "⑤ Lapis", name_6 = "⑥ Lapis", IDAP = 19811},
+[19812] = {name_5 = "⑤ Astra", name_6 = "⑥ Astra", IDAP = 19812},
+[19813] = {name_5 = "⑤ Lupinus", name_6 = "⑥ Lupinus", IDAP = 19813},
+[19814] = {name_5 = "⑤ Iris", name_6 = "⑥ Iris", IDAP = 19814},
+[19815] = {name_5 = "⑤ Lanet", name_6 = "⑥ Lanet", IDAP = 19815},
+[19911] = {name_5 = "⑤ Stella", name_6 = "⑥ Stella", IDAP = 19911},
+[19912] = {name_5 = "⑤ Lexy", name_6 = "⑥ Lexy", IDAP = 19912},
+[19913] = {name_5 = "⑤ Tanya", name_6 = "⑥ Tanya", IDAP = 19913},
+[19914] = {name_5 = "⑤ Natalie", name_6 = "⑥ Natalie", IDAP = 19914},
+[19915] = {name_5 = "⑤ Isabelle", name_6 = "⑥ Isabelle", IDAP = 19915},
+[20011] = {name_5 = "⑤ Ryan", name_6 = "⑥ Ryan", IDAP = 20011},
+[20012] = {name_5 = "⑤ Trevor", name_6 = "⑥ Trevor", IDAP = 20012},
+[20013] = {name_5 = "⑤ Logan", name_6 = "⑥ Logan", IDAP = 20013},
+[20014] = {name_5 = "⑤ Lucas", name_6 = "⑥ Lucas", IDAP = 20014},
+[20015] = {name_5 = "⑤ Karl", name_6 = "⑥ Karl", IDAP = 20015},
+[20111] = {name_5 = "⑤ Emma", name_6 = "⑥ Emma", IDAP = 20111},
+[20112] = {name_5 = "⑤ Lisa", name_6 = "⑥ Lisa", IDAP = 20112},
+[20113] = {name_5 = "⑤ Olivia", name_6 = "⑥ Olivia", IDAP = 20113},
+[20114] = {name_5 = "⑤ IIIIianna", name_6 = "⑥ IIIIianna", IDAP = 20114},
+[20115] = {name_5 = "⑤ Sylvia", name_6 = "⑥ Sylvia", IDAP = 20115},
+[20211] = {name_5 = "⑤ Luan", name_6 = "⑥ Luan", IDAP = 20211},
+[20212] = {name_5 = "⑤ Sin", name_6 = "⑥ Sin", IDAP = 20212},
+[20213] = {name_5 = "⑤ Lo", name_6 = "⑥ Lo", IDAP = 20213},
+[20214] = {name_5 = "⑤ Hiro", name_6 = "⑥ Hiro", IDAP = 20214},
+[20215] = {name_5 = "⑤ Javkie", name_6 = "⑥ Javkie", IDAP = 20215},
+[20311] = {name_5 = "⑤ Nubia", name_6 = "⑥ Nubia", IDAP = 20311},
+[20312] = {name_5 = "⑤ Sonora", name_6 = "⑥ Sonora", IDAP = 20312},
+[20313] = {name_5 = "⑤ Namib", name_6 = "⑥ Namib", IDAP = 20313},
+[20314] = {name_5 = "⑤ Sahara", name_6 = "⑥ Sahara", IDAP = 20314},
+[20315] = {name_5 = "⑤ Karakum", name_6 = "⑥ Karakum", IDAP = 20315},
+[20411] = {name_5 = "⑤ Avaris", name_6 = "⑥ Avaris", IDAP = 20411},
+[20412] = {name_5 = "⑤ Khmun", name_6 = "⑥ Khmun", IDAP = 20412},
+[20413] = {name_5 = "⑤ Inun", name_6 = "⑥ Inun", IDAP = 20413},
+[20414] = {name_5 = "⑤ Amarna", name_6 = "⑥ Amarna", IDAP = 20414},
+[20415] = {name_5 = "⑤ The Bae", name_6 = "⑥ The Bae", IDAP = 20415},
+[20511] = {name_5 = "⑤ Bastet", name_6 = "⑥ Bastet", IDAP = 20511},
+[20512] = {name_5 = "⑤ Sekhmet", name_6 = "⑥ Sekhmet", IDAP = 20512},
+[20513] = {name_5 = "⑤ Hathor", name_6 = "⑥ Hathor", IDAP = 20513},
+[20514] = {name_5 = "⑤ Isis", name_6 = "⑥ Isis", IDAP = 20514},
+[20515] = {name_5 = "⑤ Nephthys", name_6 = "⑥ Nephthys", IDAP = 20515},
+[20611] = {name_5 = "⑤ Qebehsenuef", name_6 = "⑥ Qebehsenuef", IDAP = 20611},
+[20612] = {name_5 = "⑤ Duamutef", name_6 = "⑥ Duamutef", IDAP = 20612},
+[20613] = {name_5 = "⑤ Imessety", name_6 = "⑥ Imessety", IDAP = 20613},
+[20614] = {name_5 = "⑤ Wedjat", name_6 = "⑥ Wedjat", IDAP = 20614},
+[20615] = {name_5 = "⑤ Amduat", name_6 = "⑥ Amduat", IDAP = 20615},
+[20711] = {name_5 = "⑤ Chilling", name_6 = "⑥ Chilling", IDAP = 20711},
+[20712] = {name_5 = "⑤ Smokey", name_6 = "⑥ Smokey", IDAP = 20712},
+[20713] = {name_5 = "⑤ Windy", name_6 = "⑥ Windy", IDAP = 20713},
+[20714] = {name_5 = "⑤ Misty", name_6 = "⑥ Misty", IDAP = 20714},
+[20715] = {name_5 = "⑤ Dusky", name_6 = "⑥ Dusky", IDAP = 20715},
+[20811] = {name_5 = "⑤ Tractor", name_6 = "⑥ Tractor", IDAP = 20811},
+[20812] = {name_5 = "⑤ Bulldozer", name_6 = "⑥ Bulldozer", IDAP = 20812},
+[20813] = {name_5 = "⑤ Crane", name_6 = "⑥ Crane", IDAP = 20813},
+[20814] = {name_5 = "⑤ Driller", name_6 = "⑥ Driller", IDAP = 20814},
+[20815] = {name_5 = "⑤ Crawler", name_6 = "⑥ Crawler", IDAP = 20815},
+[20911] = {name_5 = "⑤ Eluin", name_6 = "⑥ Eluin", IDAP = 20911},
+[20912] = {name_5 = "⑤ Adrian", name_6 = "⑥ Adrian", IDAP = 20912},
+[20913] = {name_5 = "⑤ Wrwin", name_6 = "⑥ Wrwin", IDAP = 20913},
+[20914] = {name_5 = "⑤ Lucien", name_6 = "⑥ Lucien", IDAP = 20914},
+[20915] = {name_5 = "⑤ Isillen", name_6 = "⑥ Isillen", IDAP = 20915},
+[21011] = {name_5 = "⑤ Remy", name_6 = "⑥ Remy", IDAP = 21011},
+[21012] = {name_5 = "⑤ Racuni", name_6 = "⑥ Racuni", IDAP = 21012},
+[21013] = {name_5 = "⑤ Raviti", name_6 = "⑥ Raviti", IDAP = 21013},
+[21014] = {name_5 = "⑤ Dova", name_6 = "⑥ Dova", IDAP = 21014},
+[21015] = {name_5 = "⑤ Kroa", name_6 = "⑥ Kroa", IDAP = 21015},
+[21111] = {name_5 = "⑤ Psamathe", name_6 = "⑥ Psamathe", IDAP = 21111},
+[21112] = {name_5 = "⑤ Daphnis", name_6 = "⑥ Daphnis", IDAP = 21112},
+[21113] = {name_5 = "⑤ Ganymede", name_6 = "⑥ Ganymede", IDAP = 21113},
+[21114] = {name_5 = "⑤ Oberon", name_6 = "⑥ Oberon", IDAP = 21114},
+[21115] = {name_5 = "⑤ Nyx", name_6 = "⑥ Nyx", IDAP = 21115},
+[21211] = {name_5 = "⑤ Mo Long", name_6 = "⑥ Mo Long", IDAP = 21211},
+[21212] = {name_5 = "⑤ Xiong Fei", name_6 = "⑥ Xiong Fei", IDAP = 21212},
+[21213] = {name_5 = "⑤ Feng Yan", name_6 = "⑥ Feng Yan", IDAP = 21213},
+[21214] = {name_5 = "⑤ Tian Lang", name_6 = "⑥ Tian Lang", IDAP = 21214},
+[21215] = {name_5 = "⑤ Mi Ying", name_6 = "⑥ Mi Ying", IDAP = 21215},
+[21311] = {name_5 = "⑤ Reno", name_6 = "⑥ Reno", IDAP = 21311},
+[21312] = {name_5 = "⑤ Ludo", name_6 = "⑥ Ludo", IDAP = 21312},
+[21313] = {name_5 = "⑤ Morris", name_6 = "⑥ Morris", IDAP = 21313},
+[21314] = {name_5 = "⑤ Tablo", name_6 = "⑥ Tablo", IDAP = 21314},
+[21315] = {name_5 = "⑤ Monte", name_6 = "⑥ Monte", IDAP = 21315},
+[21411] = {name_5 = "⑤ Sonnet", name_6 = "⑥ Sonnet", IDAP = 21411},
+[21412] = {name_5 = "⑤ Harmonia", name_6 = "⑥ Harmonia", IDAP = 21412},
+[21413] = {name_5 = "⑤ Triana", name_6 = "⑥ Triana", IDAP = 21413},
+[21414] = {name_5 = "⑤ Celia", name_6 = "⑥ Celia", IDAP = 21414},
+[21415] = {name_5 = "⑤ Vivachel", name_6 = "⑥ Vivachel", IDAP = 21415},
+[21511] = {name_5 = "⑤ Amelia", name_6 = "⑥ Amelia", IDAP = 21511},
+[21512] = {name_5 = "⑤ Helena", name_6 = "⑥ Helena", IDAP = 21512},
+[21513] = {name_5 = "⑤ Diana", name_6 = "⑥ Diana", IDAP = 21513},
+[21514] = {name_5 = "⑤ Eleanor", name_6 = "⑥ Eleanor", IDAP = 21514},
+[21515] = {name_5 = "⑤ Alexandra", name_6 = "⑥ Alexandra", IDAP = 21515},
+[21811] = {name_5 = "⑤ Josephine", name_6 = "⑥ Josephine", IDAP = 21811},
+[21812] = {name_5 = "⑤ Ophilia", name_6 = "⑥ Ophilia", IDAP = 21812},
+[21813] = {name_5 = "⑤ Louise", name_6 = "⑥ Louise", IDAP = 21813},
+[21814] = {name_5 = "⑤ Jeanne", name_6 = "⑥ Jeanne", IDAP = 21814},
+[21815] = {name_5 = "⑤ Leona", name_6 = "⑥ Leona", IDAP = 21815},
+[21911] = {name_5 = "⑤ Talia", name_6 = "⑥ Talia", IDAP = 21911},
+[21912] = {name_5 = "⑤ Shaina", name_6 = "⑥ Shaina", IDAP = 21912},
+[21913] = {name_5 = "⑤ Melissa", name_6 = "⑥ Melissa", IDAP = 21913},
+[21914] = {name_5 = "⑤ Deva", name_6 = "⑥ Deva", IDAP = 21914},
+[21915] = {name_5 = "⑤ Belita", name_6 = "⑥ Belita", IDAP = 21915},
+[22011] = {name_5 = "⑤ Sabrina", name_6 = "⑥ Sabrina", IDAP = 22011},
+[22012] = {name_5 = "⑤ Maruna", name_6 = "⑥ Maruna", IDAP = 22012},
+[22013] = {name_5 = "⑤ Zenobia", name_6 = "⑥ Zenobia", IDAP = 22013},
+[22014] = {name_5 = "⑤ Bailey", name_6 = "⑥ Bailey", IDAP = 22014},
+[22015] = {name_5 = "⑤ Martina", name_6 = "⑥ Martina", IDAP = 22015},
+[22111] = {name_5 = "⑤ Herne", name_6 = "⑥ Herne", IDAP = 22111},
+[22112] = {name_5 = "⑤ Nisha", name_6 = "⑥ Nisha", IDAP = 22112},
+[22113] = {name_5 = "⑤ Mellia", name_6 = "⑥ Mellia", IDAP = 22113},
+[22114] = {name_5 = "⑤ Felleria", name_6 = "⑥ Felleria", IDAP = 22114},
+[22115] = {name_5 = "⑤ Hyanes", name_6 = "⑥ Hyanes", IDAP = 22115},
+[22211] = {name_5 = "⑤ Abellio", name_6 = "⑥ Abellio", IDAP = 22211},
+[22212] = {name_5 = "⑤ Bellenus", name_6 = "⑥ Bellenus", IDAP = 22212},
+[22213] = {name_5 = "⑤ Taranys", name_6 = "⑥ Taranys", IDAP = 22213},
+[22214] = {name_5 = "⑤ Valantis", name_6 = "⑥ Valantis", IDAP = 22214},
+[22215] = {name_5 = "⑤ Pater", name_6 = "⑥ Pater", IDAP = 22215},
+[22411] = {name_5 = "⑤ Bagir", name_6 = "⑥ Bagir", IDAP = 22411},
+[22412] = {name_5 = "⑤ Vidurr", name_6 = "⑥ Vidurr", IDAP = 22412},
+[22413] = {name_5 = "⑤ Skogul", name_6 = "⑥ Skogul", IDAP = 22413},
+[22414] = {name_5 = "⑤ Einheri", name_6 = "⑥ Einheri", IDAP = 22414},
+[22415] = {name_5 = "⑤ Trasar", name_6 = "⑥ Trasar", IDAP = 22415},
+[22611] = {name_5 = "⑤ Bolverk", name_6 = "⑥ Bolverk", IDAP = 22611},
+[22612] = {name_5 = "⑤ Baleygr", name_6 = "⑥ Baleygr", IDAP = 22612},
+[22613] = {name_5 = "⑤ Odin", name_6 = "⑥ Odin", IDAP = 22613},
+[22614] = {name_5 = "⑤ Geldnir", name_6 = "⑥ Geldnir", IDAP = 22614},
+[22615] = {name_5 = "⑤ Herteit", name_6 = "⑥ Herteit", IDAP = 22615},
+[22711] = {name_5 = "⑤ Covenant", name_6 = "⑥ Covenant", IDAP = 22711},
+[22712] = {name_5 = "⑤ Carcano", name_6 = "⑥ Carcano", IDAP = 22712},
+[22713] = {name_5 = "⑤ Carbine", name_6 = "⑥ Carbine", IDAP = 22713},
+[22714] = {name_5 = "⑤ Magnum", name_6 = "⑥ Magnum", IDAP = 22714},
+[22715] = {name_5 = "⑤ Dragunov", name_6 = "⑥ Dragunov", IDAP = 22715},
+[22911] = {name_5 = "⑤ Abigail", name_6 = "⑥ Abigail", IDAP = 22911},
+[22912] = {name_5 = "⑤ Scarlett", name_6 = "⑥ Scarlett", IDAP = 22912},
+[22913] = {name_5 = "⑤ Christina", name_6 = "⑥ Christina", IDAP = 22913},
+[22914] = {name_5 = "⑤ Emily", name_6 = "⑥ Emily", IDAP = 22914},
+[22915] = {name_5 = "⑤ Bella", name_6 = "⑥ Bella", IDAP = 22915},
+[23015] = {name_5 = "⑤ Eirgar", name_6 = "⑥ Eirgar", IDAP = 23015},
+[23111] = {name_5 = "⑤ Belial", name_6 = "⑥ Belial", IDAP = 23111},
+[23112] = {name_5 = "⑤ Bael", name_6 = "⑥ Bael", IDAP = 23112},
+[23113] = {name_5 = "⑤ Mephisto", name_6 = "⑥ Mephisto", IDAP = 23113},
+[23114] = {name_5 = "⑤ Lucifer", name_6 = "⑥ Lucifer", IDAP = 23114},
+[23115] = {name_5 = "⑤ Beelzebub", name_6 = "⑥ Beelzebub", IDAP = 23115},
+[23311] = {name_5 = "⑤ Tanzaite", name_6 = "⑥ Tanzaite", IDAP = 23311},
+[23312] = {name_5 = "⑤ Kunite", name_6 = "⑥ Kunite", IDAP = 23312},
+[23313] = {name_5 = "⑤ Malite", name_6 = "⑥ Malite", IDAP = 23313},
+[23314] = {name_5 = "⑤ Phenaka", name_6 = "⑥ Phenaka", IDAP = 23314},
+[23315] = {name_5 = "⑤ Onyx", name_6 = "⑥ Onyx", IDAP = 23315},
+[23511] = {name_5 = "⑤ Barbara", name_6 = "⑥ Barbara", IDAP = 23511},
+[23512] = {name_5 = "⑤ Masha", name_6 = "⑥ Masha", IDAP = 23512},
+[23513] = {name_5 = "⑤ Savannah", name_6 = "⑥ Savannah", IDAP = 23513},
+[23514] = {name_5 = "⑤ Narsha", name_6 = "⑥ Narsha", IDAP = 23514},
+[23515] = {name_5 = "⑤ Xiana", name_6 = "⑥ Xiana", IDAP = 23515},
+[23711] = {name_5 = "⑤ Haegang", name_6 = "⑥ Haegang", IDAP = 23711},
+[23712] = {name_5 = "⑤ Jeogun", name_6 = "⑥ Jeogun", IDAP = 23712},
+[23713] = {name_5 = "⑤ Cheongpung", name_6 = "⑥ Cheongpung", IDAP = 23713},
+[23714] = {name_5 = "⑤ Hanwul", name_6 = "⑥ Hanwul", IDAP = 23714},
+[23715] = {name_5 = "⑤ Mookwol", name_6 = "⑥ Mookwol", IDAP = 23715},
+[23911] = {name_5 = "⑤ Songseol", name_6 = "⑥ Songseol", IDAP = 23911},
+[23912] = {name_5 = "⑤ Hongyeon", name_6 = "⑥ Hongyeon", IDAP = 23912},
+[23913] = {name_5 = "⑤ Yeonhwa", name_6 = "⑥ Yeonhwa", IDAP = 23913},
+[23914] = {name_5 = "⑤ Dongbaek", name_6 = "⑥ Dongbaek", IDAP = 23914},
+[23915] = {name_5 = "⑤ Mirinae", name_6 = "⑥ Mirinae", IDAP = 23915},
+[24011] = {name_5 = "⑤ RYU Water", name_6 = "⑥ RYU Water", IDAP = 24011},
+[24012] = {name_5 = "⑤ RYU Fire", name_6 = "⑥ RYU Fire", IDAP = 24012},
+[24013] = {name_5 = "⑤ RYU Wind", name_6 = "⑥ RYU Wind", IDAP = 24013},
+[24014] = {name_5 = "⑤ RYU Light", name_6 = "⑥ RYU Light", IDAP = 24014},
+[24015] = {name_5 = "⑤ RYU Dark", name_6 = "⑥ RYU Dark", IDAP = 24015},
+[24112] = {name_5 = "⑤ KEN", name_6 = "⑥ KEN", IDAP = 24112},
+[24211] = {name_5 = "⑤ M. BISON Water", name_6 = "⑥ M. BISON Water", IDAP = 24211},
+[24212] = {name_5 = "⑤ M. BISON Fire", name_6 = "⑥ M. BISON Fire", IDAP = 24212},
+[24213] = {name_5 = "⑤ M. BISON Wind", name_6 = "⑥ M. BISON Wind", IDAP = 24213},
+[24214] = {name_5 = "⑤ M. BISON Light", name_6 = "⑥ M. BISON Light", IDAP = 24214},
+[24215] = {name_5 = "⑤ M. BISON Dark", name_6 = "⑥ M. BISON Dark", IDAP = 24215},
+[24311] = {name_5 = "⑤ DHALSIM Water", name_6 = "⑥ DHALSIM Water", IDAP = 24311},
+[24312] = {name_5 = "⑤ DHALSIM Fire", name_6 = "⑥ DHALSIM Fire", IDAP = 24312},
+[24313] = {name_5 = "⑤ DHALSIM Wind", name_6 = "⑥ DHALSIM Wind", IDAP = 24313},
+[24314] = {name_5 = "⑤ DHALSIM Light", name_6 = "⑥ DHALSIM Light", IDAP = 24314},
+[24315] = {name_5 = "⑤ DHALSIM Dark", name_6 = "⑥ DHALSIM Dark", IDAP = 24315},
+[24411] = {name_5 = "⑤ CHUN-LI Water", name_6 = "⑥ CHUN-LI Water", IDAP = 24411},
+[24412] = {name_5 = "⑤ CHUN-LI Fire", name_6 = "⑥ CHUN-LI Fire", IDAP = 24412},
+[24413] = {name_5 = "⑤ CHUN-LI Wind", name_6 = "⑥ CHUN-LI Wind", IDAP = 24413},
+[24414] = {name_5 = "⑤ CHUN-LI Light", name_6 = "⑥ CHUN-LI Light", IDAP = 24414},
+[24415] = {name_5 = "⑤ CHUN-LI Dark", name_6 = "⑥ CHUN-LI Dark", IDAP = 24415},
+[24511] = {name_5 = "⑤ Moore", name_6 = "⑥ Moore", IDAP = 24511},
+[24512] = {name_5 = "⑤ Douglas", name_6 = "⑥ Douglas", IDAP = 24512},
+[24513] = {name_5 = "⑤ Kashmir", name_6 = "⑥ Kashmir", IDAP = 24513},
+[24514] = {name_5 = "⑤ Talisman", name_6 = "⑥ Talisman", IDAP = 24514},
+[24515] = {name_5 = "⑤ Vanclife", name_6 = "⑥ Vanclife", IDAP = 24515},
+[24612] = {name_5 = "⑤ Bernadotte", name_6 = "⑥ Bernadotte", IDAP = 24612},
+[24711] = {name_5 = "⑤ Borgnine", name_6 = "⑥ Borgnine", IDAP = 24711},
+[24712] = {name_5 = "⑤ Karnal", name_6 = "⑥ Karnal", IDAP = 24712},
+[24713] = {name_5 = "⑤ Sagar", name_6 = "⑥ Sagar", IDAP = 24713},
+[24714] = {name_5 = "⑤ Craig", name_6 = "⑥ Craig", IDAP = 24714},
+[24715] = {name_5 = "⑤ Gurkha", name_6 = "⑥ Gurkha", IDAP = 24715},
+[24811] = {name_5 = "⑤ Kyle", name_6 = "⑥ Kyle", IDAP = 24811},
+[24812] = {name_5 = "⑤ Todd", name_6 = "⑥ Todd", IDAP = 24812},
+[24813] = {name_5 = "⑤ Jarrett", name_6 = "⑥ Jarrett", IDAP = 24813},
+[24814] = {name_5 = "⑤ Hekerson", name_6 = "⑥ Hekerson", IDAP = 24814},
+[24815] = {name_5 = "⑤ Cayde", name_6 = "⑥ Cayde", IDAP = 24815},
+[24911] = {name_5 = "⑤ Lariel", name_6 = "⑥ Lariel", IDAP = 24911},
+[24912] = {name_5 = "⑤ Berenice", name_6 = "⑥ Berenice", IDAP = 24912},
+[24913] = {name_5 = "⑤ Cordelia", name_6 = "⑥ Cordelia", IDAP = 24913},
+[24914] = {name_5 = "⑤ Leah", name_6 = "⑥ Leah", IDAP = 24914},
+[24915] = {name_5 = "⑤ Vereesa", name_6 = "⑥ Vereesa", IDAP = 24915},
+[25011] = {name_5 = "⑤ Shizuka", name_6 = "⑥ Shizuka", IDAP = 25011},
+[25012] = {name_5 = "⑤ Tomoe", name_6 = "⑥ Tomoe", IDAP = 25012},
+[25013] = {name_5 = "⑤ Giou", name_6 = "⑥ Giou", IDAP = 25013},
+[25014] = {name_5 = "⑤ Seimei", name_6 = "⑥ Seimei", IDAP = 25014},
+[25015] = {name_5 = "⑤ Douman", name_6 = "⑥ Douman", IDAP = 25015},
+[25111] = {name_5 = "⑤ Suiki", name_6 = "⑥ Suiki", IDAP = 25111},
+[25112] = {name_5 = "⑤ Kaki", name_6 = "⑥ Kaki", IDAP = 25112},
+[25113] = {name_5 = "⑤ Fuuki", name_6 = "⑥ Fuuki", IDAP = 25113},
+[25114] = {name_5 = "⑤ Kinki", name_6 = "⑥ Kinki", IDAP = 25114},
+[25115] = {name_5 = "⑤ Ongyouki", name_6 = "⑥ Ongyouki", IDAP = 25115},
+[25211] = {name_5 = "⑤ Nana", name_6 = "⑥ Nana", IDAP = 25211},
+[25212] = {name_5 = "⑤ Coco", name_6 = "⑥ Coco", IDAP = 25212},
+[25213] = {name_5 = "⑤ Momo", name_6 = "⑥ Momo", IDAP = 25213},
+[25214] = {name_5 = "⑤ Dorothy", name_6 = "⑥ Dorothy", IDAP = 25214},
+[25215] = {name_5 = "⑤ KIiki", name_6 = "⑥ KIiki", IDAP = 25215},
+[25311] = {name_5 = "⑤ Miles", name_6 = "⑥ Miles", IDAP = 25311},
+[25312] = {name_5 = "⑤ John", name_6 = "⑥ John", IDAP = 25312},
+[25313] = {name_5 = "⑤ Oliver", name_6 = "⑥ Oliver", IDAP = 25313},
+[25314] = {name_5 = "⑤ Daniel", name_6 = "⑥ Daniel", IDAP = 25314},
+[25315] = {name_5 = "⑤ Jackson", name_6 = "⑥ Jackson", IDAP = 25315},
+[25411] = {name_5 = "⑤ ROBO-R40", name_6 = "⑥ ROBO-R40", IDAP = 25411},
+[25412] = {name_5 = "⑤ ROBO-P27", name_6 = "⑥ ROBO-P27", IDAP = 25412},
+[25413] = {name_5 = "⑤ ROBO-G92", name_6 = "⑥ ROBO-G92", IDAP = 25413},
+[25414] = {name_5 = "⑤ ROBO-E65", name_6 = "⑥ ROBO-E65", IDAP = 25414},
+[25415] = {name_5 = "⑤ ROBO-F29", name_6 = "⑥ ROBO-F29", IDAP = 25415},
+[25511] = {name_5 = "⑤ Aaliyah", name_6 = "⑥ Aaliyah", IDAP = 25511},
+[25512] = {name_5 = "⑤ Nora", name_6 = "⑥ Nora", IDAP = 25512},
+[25513] = {name_5 = "⑤ Riley", name_6 = "⑥ Riley", IDAP = 25513},
+[25514] = {name_5 = "⑤ Ella", name_6 = "⑥ Ella", IDAP = 25514},
+[25515] = {name_5 = "⑤ Maya", name_6 = "⑥ Maya", IDAP = 25515},
+
+[10131] = {name_5 = "⑤ Elucia  2A", name_6 = "⑥ Elucia  2A", IDAP = 10131},
+[10132] = {name_5 = "⑤ Iselia  2A", name_6 = "⑥ Iselia  2A", IDAP = 10132},
+[10133] = {name_5 = "⑤ Aeilene 2A", name_6 = "⑥ Aeilene 2A", IDAP = 10133},
+[10134] = {name_5 = "⑤ Neal 2A", name_6 = "⑥ Neal 2A", IDAP = 10134},
+[10135] = {name_5 = "⑤ Sorin 2A", name_6 = "⑥ Sorin 2A", IDAP = 10135},
+[10331] = {name_5 = "⑤ Kacey 2A", name_6 = "⑥ Kacey 2A", IDAP = 10331},
+[10332] = {name_5 = "⑤ Tatu 2A", name_6 = "⑥ Tatu 2A", IDAP = 10332},
+[10333] = {name_5 = "⑤ Shannon 2A", name_6 = "⑥ Shannon 2A", IDAP = 10333},
+[10334] = {name_5 = "⑤ Cheryl 2A", name_6 = "⑥ Cheryl 2A", IDAP = 10334},
+[10335] = {name_5 = "⑤ Camaryn 2A", name_6 = "⑥ Camaryn 2A", IDAP = 10335},
+[10731] = {name_5 = "⑤ Dragora 2A", name_6 = "⑥ Dragora 2A", IDAP = 10731},
+[10732] = {name_5 = "⑤ Ursha 2A", name_6 = "⑥ Ursha 2A", IDAP = 10732},
+[10733] = {name_5 = "⑤ Ramagos 2A", name_6 = "⑥ Ramagos 2A", IDAP = 10733},
+[10734] = {name_5 = "⑤ Lusha 2A", name_6 = "⑥ Lusha 2A", IDAP = 10734},
+[10735] = {name_5 = "⑤ Gorgo 2A", name_6 = "⑥ Gorgo 2A", IDAP = 10735},
+[11031] = {name_5 = "⑤ Icaru 2A", name_6 = "⑥ Icaru 2A", IDAP = 11031},
+[11032] = {name_5 = "⑤ Raoq 2A", name_6 = "⑥ Raoq 2A", IDAP = 11032},
+[11033] = {name_5 = "⑤ Ramaha 2A", name_6 = "⑥ Ramaha 2A", IDAP = 11033},
+[11034] = {name_5 = "⑤ Belladeon 2A", name_6 = "⑥ Belladeon 2A", IDAP = 11034},
+[11035] = {name_5 = "⑤ Kro 2A", name_6 = "⑥ Kro 2A", IDAP = 11035},
+[11531] = {name_5 = "⑤ Kahn 2A", name_6 = "⑥ Kahn 2A", IDAP = 11531},
+[11532] = {name_5 = "⑤ Spectra 2A", name_6 = "⑥ Spectra 2A", IDAP = 11532},
+[11533] = {name_5 = "⑤ Bernard 2A", name_6 = "⑥ Bernard 2A", IDAP = 11533},
+[11534] = {name_5 = "⑤ Shamann 2A", name_6 = "⑥ Shamann 2A", IDAP = 11534},
+[11535] = {name_5 = "⑤ Varus 2A", name_6 = "⑥ Varus 2A", IDAP = 11535},
+[12031] = {name_5 = "⑤ Ellena 2A", name_6 = "⑥ Ellena 2A", IDAP = 12031},
+[12032] = {name_5 = "⑤ Kahli 2A", name_6 = "⑥ Kahli 2A", IDAP = 12032},
+[12033] = {name_5 = "⑤ Moria 2A", name_6 = "⑥ Moria 2A", IDAP = 12033},
+[12034] = {name_5 = "⑤ Shren 2A", name_6 = "⑥ Shren 2A", IDAP = 12034},
+[12035] = {name_5 = "⑤ Lumaline 2A", name_6 = "⑥ Lumaline 2A", IDAP = 12035},
+[13231] = {name_5 = "⑤ Lulu 2A", name_6 = "⑥ Lulu 2A", IDAP = 13231},
+[13232] = {name_5 = "⑤ Lala 2A", name_6 = "⑥ Lala 2A", IDAP = 13232},
+[13233] = {name_5 = "⑤ Chichi 2A", name_6 = "⑥ Chichi 2A", IDAP = 13233},
+[13234] = {name_5 = "⑤ Shushu 2A", name_6 = "⑥ Shushu 2A", IDAP = 13234},
+[13235] = {name_5 = "⑤ Chacha 2A", name_6 = "⑥ Chacha 2A", IDAP = 13235},
+[14031] = {name_5 = "⑤ Vigor 2A", name_6 = "⑥ Vigor 2A", IDAP = 14031},
+[14032] = {name_5 = "⑤ Garoche 2A", name_6 = "⑥ Garoche 2A", IDAP = 14032},
+[14033] = {name_5 = "⑤ Shaken 2A", name_6 = "⑥ Shaken 2A", IDAP = 14033},
+[14034] = {name_5 = "⑤ Eshir 2A", name_6 = "⑥ Eshir 2A", IDAP = 14034},
+[14035] = {name_5 = "⑤ jultan 2A", name_6 = "⑥ jultan 2A", IDAP = 14035},
+[15031] = {name_5 = "⑤ Mina 2A", name_6 = "⑥ Mina 2A", IDAP = 15031},
+[15032] = {name_5 = "⑤ Mei 2A", name_6 = "⑥ Mei 2A", IDAP = 15032},
+[15033] = {name_5 = "⑤ Naomi 2A", name_6 = "⑥ Naomi 2A", IDAP = 15033},
+[15034] = {name_5 = "⑤ Xiao Ling 2A", name_6 = "⑥ Xiao Ling 2A", IDAP = 15034},
+[15035] = {name_5 = "⑤ Miho 2A", name_6 = "⑥ Miho 2A", IDAP = 15035},
+[16031] = {name_5 = "⑤ Hemos 2A", name_6 = "⑥ Hemos 2A", IDAP = 16031},
+[16032] = {name_5 = "⑤ Sath 2A", name_6 = "⑥ Sath 2A", IDAP = 16032},
+[16033] = {name_5 = "⑤ hiva 2A", name_6 = "⑥ hiva 2A", IDAP = 16033},
+[16034] = {name_5 = "⑤ Prom 2A", name_6 = "⑥ Prom 2A", IDAP = 16034},
+[16035] = {name_5 = "⑤ Thrain 2A", name_6 = "⑥ Thrain 2A", IDAP = 16035}
+}
+
+    if Load5_6_OK == 0 then
+        for i, v in ipairs(values_6) do
+            local item = mapping[v.value]
+            if item ~= nil then
+                table.insert(menuNames, item.name_6)
+                table.insert(menuID, item.IDAP)
+                table.insert(DiaChi, v.address)
+            end
+        end
+        for i, v in ipairs(values_5) do
+            local item = mapping[v.value]
+            if item ~= nil then
+                table.insert(menuNames, item.name_5)
+                table.insert(menuID, item.IDAP)
+                table.insert(DiaChi, v.address)
+            end
+        end
+        Load5_6_OK = 1
+    end
+end
+
+function ModAPet()
+    gg.loadResults(gg.getListItems())
+    gg.refineNumber(""..IDAP.."", gg.TYPE_DWORD)
+    local count = gg.getResultsCount()
+    local results = gg.getResults(count)
+    local P = gg.prompt(
+        {"🄸🄽🅂🄴🅁🅃 🄸🄳 🅅🄰🄻🅄🄴🅂\n •━━━"..TenQV.." ⌾━━━•\n\nSKILL - 1","SKILL - 2","SKILL - 3"},
+        {S_1,S_2,S_3},
+        {"number","number","number"})
+    if P ~= nil then
+        if string.len(P[1]) > 5 or string.len(P[1]) < 4 or string.len(P[2]) > 5 or string.len(P[2]) < 4 or string.len(P[3]) > 5 or string.len(P[3]) < 4 then
+            gg.alert('Invalid skill!')
+            return ModAPet()
+        end
+        local values = {}
+        for i, v in ipairs(results) do
+            local index = (i - 1) * 4
+            local addr = v.address
+            values[index + 1] = {address = addr + 48, flags = gg.TYPE_DWORD, value = P[1], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[1], freezeTo = P[1]}
+            values[index + 2] = {address = addr + 64, flags = gg.TYPE_DWORD, value = P[2], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[2], freezeTo = P[2]}
+            values[index + 3] = {address = addr + 80, flags = gg.TYPE_DWORD, value = P[3], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[3], freezeTo = P[3]}
+            values[index + 4] = {address = addr + 96, flags = gg.TYPE_DWORD, value = "0", freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = "0", freezeTo = "0"}
+        end
+        gg.setValues(values)
+        gg.addListItems(values)
+
+            S1_Fav[choiceFL] = P[1]
+
+            S2_Fav[choiceFL] = P[2]
+
+            S3_Fav[choiceFL] = P[3]
+
+        print(S1_Fav,S2_Fav,S3_Fav)
+        gg.saveVariable(S1_Fav, item_3)
+        gg.saveVariable(S2_Fav, item_4)
+        gg.saveVariable(S3_Fav, item_5)
+        gg.toast(TenQV.."'s skills have been modified")
+        MenuFz()
+    end
+end
+
+function Mod1Pet()
+    gg.loadResults(gg.getListItems())
+    gg.refineNumber(""..IDAP.."", gg.TYPE_DWORD)
+    local count = gg.getResultsCount()
+    local results = gg.getResults(count)
+    local P = gg.prompt(
+        {"🄸🄽🅂🄴🅁🅃 🄸🄳 🅅🄰🄻🅄🄴🅂\n •━━━"..TenQV.." ⌾━━━•\n\nSKILL - 1","SKILL - 2","SKILL - 3"},
+        {"9014","13618","6014"})
+    if P ~= nil then
+        if string.len(P[1]) > 5 or string.len(P[1]) < 4 or string.len(P[2]) > 5 or string.len(P[2]) < 4 or string.len(P[3]) > 5 or string.len(P[3]) < 4 then
+            gg.alert('Invalid skill!')
+            return Mod1Pet()
+        end
+        local values = {}
+        for i, v in ipairs(results) do
+            local index = (i - 1) * 4
+            local addr = v.address
+            values[index + 1] = {address = addr + 48, flags = gg.TYPE_DWORD, value = P[1], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[1], freezeTo = P[1]}
+            values[index + 2] = {address = addr + 64, flags = gg.TYPE_DWORD, value = P[2], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[2], freezeTo = P[2]}
+            values[index + 3] = {address = addr + 80, flags = gg.TYPE_DWORD, value = P[3], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[3], freezeTo = P[3]}
+            values[index + 4] = {address = addr + 96, flags = gg.TYPE_DWORD, value = "0", freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = "0", freezeTo = "0"}
+        end
+        gg.setValues(values)
+        gg.addListItems(values)
+      
+        gg.toast(TenQV.."'s skills have been modified")
+        MenuM()
+    end
+end
+
+function MenuM()
+    local choice = gg.choice(menuNames, nil, "All your 5★ and 6★ monsters")
+    if choice == 1 then
+        return menupet()
+    elseif choice ~= nil then
+        TenQV = menuNames[choice]
+        IDAP = menuID[choice]
+        table.insert(MenuID_1, IDAP) 
+        table.insert(TenAB, TenQV) 
+        Mod1Pet()
+   elseif choice == nil then
+   end
+end
+
+function MenuAF()
+    local choiceAF = gg.choice(menuNames, nil, "Select a monster to add to favorites")
+    if choiceAF == 1 then
+        gg.saveVariable(Name_Fav, item_1)
+        gg.saveVariable(ID_Fav, item_2)
+        gg.saveVariable(S1_Fav, item_3)
+        gg.saveVariable(S2_Fav, item_4)
+        gg.saveVariable(S3_Fav, item_5)
+        ID_Name = 1
+        MenuFz()
+    elseif choiceAF ~= nil then
+        TenQV = menuNames[choiceAF]
+        IDAP = menuID[choiceAF]
+        gg.loadResults(gg.getListItems())
+        gg.refineNumber(""..IDAP.."", gg.TYPE_DWORD)
+        local count = gg.getResultsCount()
+        local results = gg.getResults(count)
+        local X1 = {}
+            X1[1] = {}
+            X1[1].address = results[1].address + 48
+            X1[1].flags = gg.TYPE_DWORD
+            X_1 = gg.getValues(X1)
+        local X2 = {}
+            X2[1] = {}
+            X2[1].address = results[1].address + 64
+            X2[1].flags = gg.TYPE_DWORD
+            X_2 = gg.getValues(X2)
+        local X3 = {}
+            X3[1] = {}
+            X3[1].address = results[1].address + 80
+            X3[1].flags = gg.TYPE_DWORD
+            X_3 = gg.getValues(X3)
+        SKP_1 = X_1[1].value
+        SKP_2 = X_2[1].value
+        SKP_3 = X_3[1].value
+        local HX = 1
+        for i, v in ipairs(Name_Fav) do
+            if Name_Fav[i] == TenQV then
+                HX = 2
+                local Daco = gg.alert(TenQV.."'s already on the list!", "Ok", nil, "Save & return")
+                if Daco == 1 then return MenuAF()
+                elseif Daco == 3 then
+                    gg.saveVariable(Name_Fav, item_1)
+                    gg.saveVariable(ID_Fav, item_2)
+                    gg.saveVariable(S1_Fav, item_3)
+                    gg.saveVariable(S2_Fav, item_4)
+                    gg.saveVariable(S3_Fav, item_5)
+                    ID_Name = 1
+                    MenuFz()
+                end
+           else
+                HX = 1 
+           end
+        end
+        if HX == 1 then
+            table.insert(Name_Fav, TenQV)
+            table.insert(ID_Fav, IDAP) 
+            table.insert(S1_Fav, SKP_1) 
+            table.insert(S2_Fav, SKP_2) 
+            table.insert(S3_Fav, SKP_3)    
+        end
+        local TB_AF = gg.alert(TenQV.." has been added to the list!\nContinue adding?","Yes", nil, "No! Save List")
+            if TB_AF == 1 then return MenuAF()
+            elseif TB_AF == 3 then
+                gg.saveVariable(Name_Fav, item_1)
+                gg.saveVariable(ID_Fav, item_2)
+                gg.saveVariable(S1_Fav, item_3)
+                gg.saveVariable(S2_Fav, item_4)
+                gg.saveVariable(S3_Fav, item_5)
+                ID_Name = 1
+                MenuFz()
+            end
+    elseif choiceAF == nil then
+    end
+end
+
+function ModAllF()
+    for i, v in ipairs(Name_Fav1) do
+        if Name_Fav1[i+1] == nill then 
+            j = i 
+            break 
+        end 
+    end
+    for l = 3, j do
+        local IDPetA = ID_Fav1[l]
+        local S1_PA = S1_Fav1[l]
+        local S2_PA = S2_Fav2[l]
+        local S3_PA = S3_Fav3[l]
+        
+        gg.loadResults(gg.getListItems())
+        gg.refineNumber(""..IDPetA.."", gg.TYPE_DWORD)
+        local count = gg.getResultsCount()
+        local results = gg.getResults(count)
+        local values = {}
+        for i, v in ipairs(results) do
+            local index = (i - 1) * 4
+            local addr = v.address
+            values[index + 1] = {address = addr + 48, flags = gg.TYPE_DWORD, value = S1_PA, freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = S1_PA, freezeTo = S1_PA}
+            values[index + 2] = {address = addr + 64, flags = gg.TYPE_DWORD, value = S2_PA, freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = S2_PA, freezeTo = S2_PA}
+            values[index + 3] = {address = addr + 80, flags = gg.TYPE_DWORD, value = S3_PA, freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = S3_PA, freezeTo = S3_PA}
+            values[index + 4] = {address = addr + 96, flags = gg.TYPE_DWORD, value = "0", freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = "0", freezeTo = "0"}
+        end
+        gg.setValues(values)
+        gg.addListItems(values)
+    end
+end
+
+function Options()
+    if Name_Fav[3] == nil then
+        MenuO = gg.choice({ 
+        	"☑ Add monster", "⊝ Clear list", "⍇ Back" }, nil, "Options")
+        if MenuO == 1 then
+            MenuAF()
+       elseif MenuO == 2 then 
+            DiaChiF = {}
+            Name_Fav = {"⊚ Options", "⍇ Back"}
+            ID_Fav = {0, 0}
+            S1_Fav ={0, 0}
+            S2_Fav ={0, 0}
+            S3_Fav ={0, 0}
+            gg.saveVariable(Name_Fav, item_1)
+            gg.saveVariable(ID_Fav, item_2)
+            gg.saveVariable(S1_Fav, item_3)
+             gg.saveVariable(S2_Fav, item_4)
+            gg.saveVariable(S3_Fav, item_5)
+            ID_Name = 0
+            return menupet()
+        elseif MenuO == 3 then
+             MenuFz()
+         end
+    else
+        MenuO = gg.choice({"⌾ Mod all favorite monsters!", "☑ Add monster", "⊝ Clear list", "⍇ Back" }, nil, "Options")
+        if MenuO == 1 then 
+            ModAllF()
+        elseif MenuO == 2 then
+            MenuAF()
+       elseif MenuO == 3 then 
+            DiaChiF = {}
+            Name_Fav = {"⊚ Options", "⍇ Back"}
+            ID_Fav = {0, 0}
+            S1_Fav ={0, 0}
+            S2_Fav ={0, 0}
+            S3_Fav ={0, 0}
+            gg.saveVariable(Name_Fav, item_1)
+            gg.saveVariable(ID_Fav, item_2)
+            gg.saveVariable(S1_Fav, item_3)
+             gg.saveVariable(S2_Fav, item_4)
+            gg.saveVariable(S3_Fav, item_5)
+             ID_Name = 0
+             menupet()
+        elseif MenuO == 4 then
+             MenuFz()
+         end
+    end
+end
+
+function MenuFz()
+        Name_Fav1 = dofile(item_1)
+        ID_Fav1 = dofile(item_2)
+        S1_Fav1 = dofile(item_3)
+        S2_Fav2 = dofile(item_4)
+        S3_Fav3 = dofile(item_5)      
+        choiceFL = gg.choice(Name_Fav1, nil, "Favorites list")
+        if choiceFL == 1 then
+                Options()
+    elseif choiceFL == 2 then
+                return menupet()
+    elseif choiceFL ~= nil then
+                TenQV = Name_Fav[choiceFL]
+                IDAP = ID_Fav1[choiceFL]
+                S_1 = S1_Fav1[choiceFL]
+                S_2 = S2_Fav2[choiceFL]
+                S_3 = S3_Fav3[choiceFL]
+                ModAPet()
+    elseif choiceFL == nil then
+    end
+end
+
+function Pall()
+gg.clearResults()
+local P = gg.prompt({"🄸🄽🅂🄴🅁🅃 🄸🄳 🅅🄰🄻🅄🄴🅂\n            •━━━ ✽ • ✽ ━━━•\n\nSKILL - 1","SKILL - 2","SKILL - 3"},{"9014","6014","13618"},{"number","number","number"})
+
+    if P ~= nil then
+        if string.len(P[1]) > 5 or string.len(P[1]) < 4 or string.len(P[2]) > 5 or string.len(P[2]) < 4 or string.len(P[3]) > 5 or string.len(P[3]) < 4 then
+            gg.alert('Invalid skill!')
+            return Pall()
+        end
+        gg.clearResults()
+        gg.loadResults(gg.getListItems())
+        gg.refineNumber(ID, gg.TYPE_DWORD)
+        local count = gg.getResultsCount()
+        local results = gg.getResults(count)
+        local values = {}
+        for i, v in ipairs(results) do
+            local index = (i - 1) * 4
+            local addr = v.address
+            values[index + 1] = {address = addr + 56, flags = gg.TYPE_DWORD, value = P[1], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[1], freezeTo = P[1]}
+            values[index + 2] = {address = addr + 72, flags = gg.TYPE_DWORD, value = P[2], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[2], freezeTo = P[2]}
+            values[index + 3] = {address = addr + 88, flags = gg.TYPE_DWORD, value = P[3], freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = P[3], freezeTo = P[3]}
+            values[index + 4] = {address = addr + 104, flags = gg.TYPE_DWORD, value = "0", freeze = true, freezeType = gg.FREEZE_IN_RANGE, freezeFrom = "0", freezeTo = "0"}
+         end
+        gg.setValues(values)
+        gg.addListItems(values)
+        gg.alert("Modified the skills of all your 5★ & 6★ monsters!\nSkill 1: "..P[1].."\nSkill 2: "..P[2].."\nSkill 3: "..P[3])
+        menupet()
+    else
+        menupet()
+    end
+end
+
+function lamlai()
+gg.clearList()
+gg.loadList(Revert_IT, gg.LOAD_VALUES_FREEZE | gg.LOAD_APPEND)
+gg.toast("Skills reset")
+end
+
+function menupet()
+menu2 = gg.choice({
+'▶️ Mod a monster',
+'▶️ Favorite List',
+'▶️ Mod all',
+'▶️ Reset all skill',
+'🔙 Back'},
+nil,'MONSTER MOD')
+if menu2 == 1 then MenuM() end
+if menu2 == 2 then 
+    if HLN == 2 then
+        MenuFz()
+    else
+        gg.alert("Features only support VIP!\nContact to buy VIP\nTELEGRAM: T.ME/HOANGNINYB")
+        return menupet()
+    end
+end
+if menu2 == 3 then Pall() end
+if menu2 == 4 then lamlai() end
+if menu2 == 5 then HOME() end
+end 
+
+gg.loadResults(gg.getListItems())
+gg.refineNumber("0", gg.TYPE_DWORD)
+local p = gg.getResultCount()
+local q = gg.getResults(p)
+if p > 0 then
+Load5_6()
+menupet()
+else
+    loaddata()
+    local CheckID = gg.getResultCount()
+    if CheckID > 0 then
+        Load5_6()
+        menupet()
+    else
+        Main()
+    end
+end
