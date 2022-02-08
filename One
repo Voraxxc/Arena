@@ -194,12 +194,12 @@ function Pet()
 end
 
 function RAEMS()
-    T = load(gg.makeRequest("https://github.com/hoangninyb/ModSw/raw/Nin/R_Monster.lua").content)
+    T = load(gg.makeRequest("jhjh").content)
     pcall(T)
 end
 
 function RBS()
-    T = load(gg.makeRequest("https://github.com/hoangninyb/ModSw/raw/Nin/R_Boss.lua").content)
+    T = load(gg.makeRequest("gfgf").content)
     pcall(T)
 end
 
